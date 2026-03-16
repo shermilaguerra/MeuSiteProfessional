@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shermila Guerra — Analista de Dados & Engenheira de Dados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #07080d;
+      --bg2:       #0d0f18;
+      --bg3:       #111422;
+      --surface:   #161929;
+      --border:    rgba(255,255,255,0.07);
+      --border-h:  rgba(100,210,255,0.25);
+      --accent:    #38c8f0;
+      --accent2:   #1a9fbf;
+      --accent-dim:rgba(56,200,240,0.12);
+      --text:      #e8eaf2;
+      --text2:     #8b90a8;
+      --text3:     #5a607a;
+      --white:     #ffffff;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radius:    12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(7, 8, 13, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── SECTIONS LAYOUT ── */
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 0 4rem;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1.hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text2);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #07080d;
+    }
+
+    .btn-primary:hover {
+      background: #5fd6f7;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(56,200,240,0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text2);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* hero visual */
+    .hero-visual {
+      width: 260px;
+      height: 260px;
+      position: relative;
+      flex-shrink: 0;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.6s forwards;
+    }
+
+    .hero-avatar-ring {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1px solid var(--border-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 1px dashed rgba(56,200,240,0.15);
+      animation: spin 20s linear infinite;
+    }
+
+    .hero-avatar-inner {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a2a3a 0%, #0d1520 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-avatar-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(56,200,240,0.1), transparent 60%);
+    }
+
+    /* floating badges */
+    .badge-float {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text2);
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-float.top-right {
+      top: 8px; right: -20px;
+      animation: float1 4s ease-in-out infinite;
+    }
+
+    .badge-float.bottom-left {
+      bottom: 20px; left: -30px;
+      animation: float2 4s ease-in-out 1s infinite;
+    }
+
+    @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── SECTION COMMON ── */
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h2.section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .section-subtitle {
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      color: var(--text2);
+      font-weight: 300;
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── SOBRE MIM ── */
+    #sobre {
+      padding: 7rem 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .sobre-text p {
+      color: var(--text2);
+      font-weight: 300;
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+
+    .sobre-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .skills-block { }
+
+    .skills-group {
+      margin-bottom: 2rem;
+    }
+
+    .skills-group-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 0.75rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--border-h);
+      color: var(--accent);
+    }
+
+    .tag-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── PROJETOS ── */
+    #projetos {
+      padding: 7rem 0;
+      background: var(--bg);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--card-accent, var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .project-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+    }
+
+    .project-arrow {
+      color: var(--text3);
+      transition: color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .project-card:hover .project-arrow {
+      color: var(--accent);
+      transform: translate(3px, -3px);
+    }
+
+    .project-name {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--text2);
+      line-height: 1.75;
+      font-weight: 300;
+      flex: 1;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .stack-badge {
+      padding: 0.25rem 0.65rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── EXPERIÊNCIA ── */
+    #experiencia {
+      padding: 7rem 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 12px rgba(56,200,240,0.5);
+    }
+
+    .timeline-period {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--text2);
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text2);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ── CONTATO ── */
+    #contato {
+      padding: 7rem 0 5rem;
+      background: var(--bg);
+    }
+
+    .contact-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,200,240,0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-desc {
+      color: var(--text2);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--text3);
+    }
+
+    .footer-copy span {
+      color: var(--accent);
+    }
+
+    /* ── ANIMATION CLASSES ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .sobre-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">SG<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Disponível para oportunidades</p>
+          <h1 class="hero-name">Shermila<br>Guerra</h1>
+          <p class="hero-title">Analista de Dados · Engenheira de Dados · Docente</p>
+          <p class="hero-desc">
+            Mestre em Computação pela USP com experiência em arquiteturas modernas de dados,
+            ecossistema Big Data e desenvolvimento backend. Combino rigor acadêmico com
+            aplicação prática em ambientes de alta escala.
+          </p>
+          <div class="hero-actions">
+            <a href="#projetos" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Ver Projetos
+            </a>
+            <a href="https://github.com/shermilaguerra" target="_blank" rel="noopener" class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-avatar-ring">
+            <div class="hero-avatar-inner">SG</div>
+          </div>
+          <div class="badge-float top-right">
+            <span style="color:var(--accent)">●</span> Mestre USP
+          </div>
+          <div class="badge-float bottom-left">
+            <span style="color:#f7a038">●</span> Big Data &amp; ML
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOBRE MIM ─── -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-text reveal">
+          <div class="section-header">
+            <p class="section-label">Sobre mim</p>
+            <h2 class="section-title">Da academia<br>à engenharia de dados</h2>
+          </div>
+          <p>
+            Sou <strong>Mestre em Computação pela Universidade de São Paulo (USP)</strong>, com trajetória que une pesquisa acadêmica e aplicação técnica no mundo real. Minha formação me deu base sólida em algoritmos, estruturas de dados e análise de sistemas complexos.
+          </p>
+          <p>
+            Ao longo da minha carreira, desenvolvi expertise em <strong>arquiteturas modernas de dados</strong>, construindo pipelines robustos com Databricks, Spark e ferramentas do ecossistema Hadoop. Trabalho com dados em escala — da ingestão ao insight.
+          </p>
+          <p>
+            Tenho atuado como <strong>docente universitária</strong>, o que reforça minha capacidade de comunicar conceitos complexos com clareza, além de manter-me constantemente atualizada nas evoluções do campo.
+          </p>
+          <p>
+            Localizada em <strong>Piracicaba, SP</strong>, estou aberta a projetos remotos e oportunidades que unam dados, tecnologia e impacto real.
+          </p>
+        </div>
+
+        <div class="skills-block reveal reveal-delay-2">
+          <div class="skills-group">
+            <p class="skills-group-title">Linguagens</p>
+            <div class="tags">
+              <span class="tag"><span class="tag-dot" style="background:#3776ab"></span>Python</span>
+              <span class="tag"><span class="tag-dot" style="background:#b07219"></span>Java</span>
+              <span class="tag"><span class="tag-dot" style="background:#dc322f"></span>Scala</span>
+              <span class="tag"><span class="tag-dot" style="background:#336791"></span>SQL</span>
+              <span class="tag"><span class="tag-dot" style="background:#89e051"></span>Shell Script</span>
+            </div>
+          </div>
+          <div class="skills-group">
+            <p class="skills-group-title">Big Data &amp; Engenharia</p>
+            <div class="tags">
+              <span class="tag"><span class="tag-dot" style="background:#e25a1c"></span>Apache Spark</span>
+              <span class="tag"><span class="tag-dot" style="background:#ff6900"></span>Databricks</span>
+              <span class="tag"><span class="tag-dot" style="background:#60a817"></span>Hadoop</span>
+              <span class="tag"><span class="tag-dot" style="background:#ffa500"></span>Hive</span>
+              <span class="tag"><span class="tag-dot" style="background:#231f20"></span>Kafka</span>
+              <span class="tag"><span class="tag-dot" style="background:#006db7"></span>Sqoop</span>
+            </div>
+          </div>
+          <div class="skills-group">
+            <p class="skills-group-title">Bancos de Dados &amp; Busca</p>
+            <div class="tags">
+              <span class="tag"><span class="tag-dot" style="background:#47a248"></span>MongoDB</span>
+              <span class="tag"><span class="tag-dot" style="background:#00bfb3"></span>Elasticsearch</span>
+              <span class="tag"><span class="tag-dot" style="background:#dc382d"></span>Redis</span>
+              <span class="tag"><span class="tag-dot" style="background:#005c8e"></span>HBase</span>
+            </div>
+          </div>
+          <div class="skills-group">
+            <p class="skills-group-title">Ferramentas &amp; Cloud</p>
+            <div class="tags">
+              <span class="tag"><span class="tag-dot" style="background:#2496ed"></span>Docker</span>
+              <span class="tag"><span class="tag-dot" style="background:#ff9900"></span>AWS</span>
+              <span class="tag"><span class="tag-dot" style="background:#f05032"></span>Git</span>
+              <span class="tag"><span class="tag-dot" style="background:#38c8f0"></span>Jupyter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJETOS ─── -->
+  <section id="projetos">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Projetos</p>
+        <h2 class="section-title">Código em produção</h2>
+        <p class="section-subtitle">Repositórios que refletem meu percurso em Big Data, backend e análise de dados.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Card 1 -->
+        <a href="https://github.com/shermilaguerra/Semantix_Academy-1" target="_blank" rel="noopener"
+           class="project-card reveal"
+           style="--card-accent: #38c8f0;">
+          <div class="project-card-head">
+            <div class="project-icon" style="background: rgba(56,200,240,0.1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38c8f0" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <svg class="project-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div>
+            <p class="project-name">Semantix Academy — Big Data</p>
+            <p class="project-desc">
+              Exercícios completos dos cursos Big Data Science e Big Data Engineer da Semantix Academy. Abrange pipelines com Hadoop, Hive, Sqoop, HBase, Spark, Elasticsearch, Kafka, Redis e MongoDB — cobrindo todo o ciclo de vida de dados em larga escala.
+            </p>
+          </div>
+          <div class="project-stack">
+            <span class="stack-badge" style="background:rgba(137,224,81,0.12);color:#89e051">Shell</span>
+            <span class="stack-badge" style="background:rgba(229,90,28,0.12);color:#e95820">Spark</span>
+            <span class="stack-badge" style="background:rgba(96,168,23,0.12);color:#60a817">Hadoop</span>
+            <span class="stack-badge" style="background:rgba(71,162,72,0.12);color:#47a248">MongoDB</span>
+            <span class="stack-badge" style="background:rgba(0,191,179,0.12);color:#00bfb3">Elastic</span>
+            <span class="stack-badge" style="background:rgba(220,56,45,0.12);color:#dc382d">Redis</span>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="https://github.com/shermilaguerra/bigdata-semantix" target="_blank" rel="noopener"
+           class="project-card reveal reveal-delay-1"
+           style="--card-accent: #89e051;">
+          <div class="project-card-head">
+            <div class="project-icon" style="background: rgba(137,224,81,0.1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#89e051" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <svg class="project-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div>
+            <p class="project-name">bigdata-semantix</p>
+            <p class="project-desc">
+              Projeto original de Big Data desenvolvido na formação Semantix, focado em scripts de orquestração e automação de clusters. Inclui configurações de ambiente, scripts de ingestão e processamento batch com ferramentas do ecossistema Hadoop.
+            </p>
+          </div>
+          <div class="project-stack">
+            <span class="stack-badge" style="background:rgba(137,224,81,0.12);color:#89e051">Shell</span>
+            <span class="stack-badge" style="background:rgba(96,168,23,0.12);color:#60a817">Hadoop</span>
+            <span class="stack-badge" style="background:rgba(56,200,240,0.12);color:#38c8f0">Big Data</span>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="https://github.com/shermilaguerra/Spark" target="_blank" rel="noopener"
+           class="project-card reveal reveal-delay-2"
+           style="--card-accent: #f7a038;">
+          <div class="project-card-head">
+            <div class="project-icon" style="background: rgba(247,160,56,0.1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7a038" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <svg class="project-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div>
+            <p class="project-name">Apache Spark — Notebooks</p>
+            <p class="project-desc">
+              Coleção de Jupyter Notebooks com experimentações práticas em Apache Spark. Aborda transformações de DataFrames, operações com RDDs, processamento distribuído e análise de dados em larga escala com PySpark.
+            </p>
+          </div>
+          <div class="project-stack">
+            <span class="stack-badge" style="background:rgba(55,118,171,0.12);color:#3776ab">Python</span>
+            <span class="stack-badge" style="background:rgba(229,90,28,0.12);color:#e95820">Spark</span>
+            <span class="stack-badge" style="background:rgba(247,160,56,0.12);color:#f7a038">Jupyter</span>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="https://github.com/shermilaguerra/CrudMongodbAtlasJava" target="_blank" rel="noopener"
+           class="project-card reveal reveal-delay-3"
+           style="--card-accent: #b07219;">
+          <div class="project-card-head">
+            <div class="project-icon" style="background: rgba(176,114,25,0.1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b07219" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            </div>
+            <svg class="project-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div>
+            <p class="project-name">CRUD MongoDB Atlas — Java</p>
+            <p class="project-desc">
+              Aplicação backend em Java que implementa operações CRUD completas integradas ao MongoDB Atlas. Demonstra integração com banco NoSQL em nuvem, mapeamento de documentos e boas práticas de design orientado a objetos.
+            </p>
+          </div>
+          <div class="project-stack">
+            <span class="stack-badge" style="background:rgba(176,114,25,0.12);color:#b07219">Java</span>
+            <span class="stack-badge" style="background:rgba(71,162,72,0.12);color:#47a248">MongoDB</span>
+            <span class="stack-badge" style="background:rgba(56,200,240,0.12);color:#38c8f0">Atlas</span>
+          </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a href="https://github.com/shermilaguerra/Folha_de_pagamento" target="_blank" rel="noopener"
+           class="project-card reveal"
+           style="--card-accent: #b07219;">
+          <div class="project-card-head">
+            <div class="project-icon" style="background: rgba(176,114,25,0.1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b07219" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            </div>
+            <svg class="project-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div>
+            <p class="project-name">Folha de Pagamento — Java</p>
+            <p class="project-desc">
+              Sistema de gestão de folha de pagamento desenvolvido em Java. Aplica conceitos de orientação a objetos como encapsulamento, herança e polimorfismo para modelar funcionários, cálculos salariais e relatórios financeiros.
+            </p>
+          </div>
+          <div class="project-stack">
+            <span class="stack-badge" style="background:rgba(176,114,25,0.12);color:#b07219">Java</span>
+            <span class="stack-badge" style="background:rgba(56,200,240,0.12);color:#38c8f0">POO</span>
+          </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a href="https://github.com/shermilaguerra/spark-xml" target="_blank" rel="noopener"
+           class="project-card reveal reveal-delay-1"
+           style="--card-accent: #dc322f;">
+          <div class="project-card-head">
+            <div class="project-icon" style="background: rgba(220,50,47,0.1);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc322f" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <svg class="project-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div>
+            <p class="project-name">spark-xml — Databricks</p>
+            <p class="project-desc">
+              Fork do conector oficial Databricks para leitura e escrita de dados XML com Spark SQL e DataFrames. Permite integrar fontes XML heterogêneas em pipelines de dados distribuídos, mantendo compatibilidade com a API DataFrame padrão.
+            </p>
+          </div>
+          <div class="project-stack">
+            <span class="stack-badge" style="background:rgba(220,50,47,0.12);color:#dc322f">Scala</span>
+            <span class="stack-badge" style="background:rgba(229,90,28,0.12);color:#e95820">Spark</span>
+            <span class="stack-badge" style="background:rgba(255,105,0,0.12);color:#ff6900">Databricks</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXPERIÊNCIA ─── -->
+  <section id="experiencia">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Experiência</p>
+        <h2 class="section-title">Trajetória profissional</h2>
+        <p class="section-subtitle">Uma combinação de pesquisa de ponta, engenharia de dados e formação acadêmica.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <p class="timeline-period">2025 — Presente</p>
+          <p class="timeline-role">Docente Universitária</p>
+          <p class="timeline-company">Ensino Superior — Piracicaba, SP</p>
+          <p class="timeline-desc">
+            Ministração de disciplinas relacionadas a programação, banco de dados e computação. Desenvolvimento de material didático, acompanhamento de projetos estudantis e orientação acadêmica em tópicos de tecnologia e ciência de dados.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-dot"></div>
+          <p class="timeline-period">2022 — 2025</p>
+          <p class="timeline-role">Engenheira de Dados / Analista de Dados</p>
+          <p class="timeline-company">Projetos e Formação em Big Data</p>
+          <p class="timeline-desc">
+            Desenvolvimento de pipelines de dados com Apache Spark, Databricks e ecossistema Hadoop. Construção de soluções de ingestão, transformação e análise de dados em larga escala. Formação intensiva na Semantix Academy em Big Data Science e Big Data Engineering.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-dot"></div>
+          <p class="timeline-period">2017 — 2022</p>
+          <p class="timeline-role">Pesquisadora — Mestrado em Computação</p>
+          <p class="timeline-company">Universidade de São Paulo (USP)</p>
+          <p class="timeline-desc">
+            Pesquisa de pós-graduação em Ciência da Computação com foco em algoritmos, processamento de dados e sistemas distribuídos. Trabalho com ferramentas como MapReduce (mrjob), PySpark e Elasticsearch no contexto de análise de dados em larga escala. Defesa de dissertação de mestrado com aprovação pela banca.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-3">
+          <div class="timeline-dot"></div>
+          <p class="timeline-period">Anterior a 2017</p>
+          <p class="timeline-role">Desenvolvimento Backend &amp; Java</p>
+          <p class="timeline-company">Formação técnica e primeiros projetos</p>
+          <p class="timeline-desc">
+            Desenvolvimento de aplicações backend com Java, incluindo modelagem orientada a objetos, integração com bancos relacionais e construção de sistemas de gestão empresarial. Base sólida em algoritmos e estruturas de dados.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTATO ─── -->
+  <section id="contato">
+    <div class="container">
+      <div class="contact-card reveal">
+        <p class="section-label" style="justify-content:center">Contato</p>
+        <h2 class="contact-title">Vamos trabalhar juntos?</h2>
+        <p class="contact-desc">
+          Estou aberta a oportunidades em análise de dados, engenharia de dados e projetos acadêmicos. Se você tem um desafio interessante envolvendo dados em escala, adoro uma boa conversa.
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/shermilaguerra" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href="mailto:shermila.guerra@gmail.com" class="btn btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Enviar e-mail
+          </a>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text3)">Localizada em Piracicaba, SP — disponível para trabalho remoto</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-copy">
+        © 2026 <span>Shermila Guerra Santa Cruz</span>. Mestre em Computação — USP.
+      </p>
+      <div style="display:flex;gap:1rem;align-items:center">
+        <a href="https://github.com/shermilaguerra" target="_blank" rel="noopener"
+           style="color:var(--text3);transition:color 0.2s;text-decoration:none"
+           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Navbar scroll effect ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── IntersectionObserver for reveal animations ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
